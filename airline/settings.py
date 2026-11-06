@@ -73,15 +73,15 @@ WSGI_APPLICATION = 'airline.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
-
+import os
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "airline",
-        "USER": "postgres",
-        "PASSWORD": "postgrespassword",
-        "HOST": "db",
-        "PORT": "5432",
+        "HOST": os.environ.get("DB_HOST", "db"),
+        "PORT": os.environ.get("DB_PORT", "5432"),
+        "NAME": os.environ.get("DB_NAME", "airline"),
+        "USER": os.environ.get("DB_USER", "postgres"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "postgrespassword"),
     }
 }
 
